@@ -1,15 +1,24 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ["tag", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:latest"]
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA"]
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   entrypoint: 'bash'
+#   args:
+#   - '-c'
+#   - >
+    # gcloud deploy releases create release-$BUILD_ID
+    # --delivery-pipeline=hello-app
+    # --region=us-central1
+    # --source=./
+    # --images=hello-app=asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA
+- name: "gcr.io/cloud-builders/gke-deploy"
   args:
-  - '-c'
-  - >
-    gcloud deploy releases create release-$BUILD_ID
-    --delivery-pipeline=hello-app
-    --region=us-central1
-    --source=./
-    --images=hello-app=asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA
+  - run
+  - --filename=k8s.yaml
+  - --images=hello-app=asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA
+  - --location=asia-south1
+  - --cluster= a-gke-as1
