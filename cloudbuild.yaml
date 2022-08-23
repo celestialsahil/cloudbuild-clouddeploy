@@ -10,6 +10,6 @@ steps:
    - >
      gcloud deploy releases create release-$BUILD_ID
      --delivery-pipeline=hello-app
-     --region=us-central1
+     --region=asia-east1
      --source=./
      --images=hello-app=asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA
