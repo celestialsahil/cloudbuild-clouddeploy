@@ -10,8 +10,6 @@ steps:
       "-Dsonar.login=${_SONAR_TOKEN}",
       "-Dsonar.java.binaries=." ]
 #       "-Dsonar.qualitygate.wait=true" ]
-substitutions:
-  _SONAR_TOKEN: "044993e76b3572f8b6941a6d9a23a6904bfc964e"
  - name: 'gcr.io/cloud-builders/docker'
    args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
  - name: 'gcr.io/cloud-builders/docker'
@@ -26,3 +24,5 @@ substitutions:
     --region=us-central1
     --source=./
     --images=hello-app=asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA
+substitutions:
+  _SONAR_TOKEN: "044993e76b3572f8b6941a6d9a23a6904bfc964e"
