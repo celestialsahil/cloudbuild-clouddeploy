@@ -2,12 +2,12 @@ steps:
 # - name: 'gcr.io/cloud-builders/mvn'
 #   args: ['install']
 - name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
-  args: [ 
-   "-Dsonar.organization=celestialsahil"
-   "-Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy"
-   "-Dsonar.sources=.""
-   "-Dsonar.host.url=https://sonarcloud.io" 
-   "-Dsonar.login=${_SONAR_TOKEN}" ]
+  args: 
+   -Dsonar.organization=celestialsahil
+   -Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy
+   -Dsonar.sources=./
+   -Dsonar.host.url=https://sonarcloud.io
+   -Dsonar.login=${_SONAR_TOKEN}
 #    "-Dsonar.java.binaries=.",
 #    "-Dsonar.qualitygate.wait=true" ]
 # - name: 'gcr.io/cloud-builders/docker'
