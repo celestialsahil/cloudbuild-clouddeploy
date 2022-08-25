@@ -1,28 +1,13 @@
 steps:
- #- name: 'gcr.io/cloud-builders/mvn'
- # args: ['install']
-- name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
-  args: [ 
-   "-Dsonar.organization=celestialsahil",
-   "-Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy",
-   "-Dsonar.sources=."",
-   "-Dsonar.host.url=https://sonarcloud.io", 
-   "-Dsonar.login=${_SONAR_TOKEN}",
-    #"-Dsonar.java.binaries=.",
-   "-Dsonar.qualitygate.wait=true" ]
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ["push", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA"]
-# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - >
-#     gcloud deploy releases create release-$BUILD_ID
-#     --delivery-pipeline=hello-test
-#     --region=asia-east1
-#     --source=./
-#     --images=hello-app=asia-south1-docker.pkg.dev/$PROJECT_ID/a-repo/hello-app:$SHORT_SHA
+  # - name: 'gcr.io/cloud-builders/mvn'
+  #   args: ['install']
+  - name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
+    args: [ 
+      "-Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy", 
+      "-Dsonar.sources=.", 
+      "-Dsonar.host.url=https://sonarcloud.io", 
+      "-Dsonar.login=${_SONAR_TOKEN}",
+      "-Dsonar.java.binaries=.",
+      "-Dsonar.qualitygate.wait=true" ]
 substitutions:
   _SONAR_TOKEN: "044993e76b3572f8b6941a6d9a23a6904bfc964e"
