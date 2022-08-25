@@ -1,6 +1,4 @@
 steps:
- - name: 'gcr.io/cloud-builders/mvn'
-   args: ['install']
  - name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
    args: [ 
     "-Dsonar.projectKey=project-test", 
