@@ -1,14 +1,14 @@
 steps:
- - name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
-   args: [ 
-    "-Dsonar.projectKey=project-test", 
-    "-Dsonar.sources=.", 
-    "-Dsonar.host.url=https://9000-cs-1086408402877-default.cs-asia-southeast1-ajrg.cloudshell.dev", 
-    "-Dsonar.login=${_SONAR_TOKEN}",
+ - name: 'gcr.io/cloud-builders/mvn'
+  args: ['install']
+- name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
+  args: [ 
+   "-Dsonar.projectKey=project-test", 
+   "-Dsonar.sources=.", 
+   "-Dsonar.host.url=https://9000-cs-1086408402877-default.cs-asia-southeast1-ajrg.cloudshell.dev", 
+   "-Dsonar.login=${_SONAR_TOKEN}",
     #"-Dsonar.java.binaries=.",
-    "-Dsonar.qualitygate.wait=true" ]
-substitutions:
-  _SONAR_TOKEN: sqp_770d5fc27d92434cc548fd5382d5868b7f51112a
+   "-Dsonar.qualitygate.wait=true" ]
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
@@ -23,3 +23,5 @@ substitutions:
     --region=asia-east1
     --source=./
     --images=hello-app=asia-south1-docker.pkg.dev/$PROJECT_ID/a-repo/hello-app:$SHORT_SHA
+substitutions:
+  _SONAR_TOKEN: "sqp_770d5fc27d92434cc548fd5382d5868b7f51112a"
