@@ -9,6 +9,6 @@ steps:
       "-Dsonar.host.url=https://sonarcloud.io", 
       "-Dsonar.login=${_SONAR_TOKEN}",
       "-Dsonar.java.binaries=.",
-      "-Dsonar.qualitygate.wait=true" ]
+#       "-Dsonar.qualitygate.wait=true" ]
 substitutions:
   _SONAR_TOKEN: "044993e76b3572f8b6941a6d9a23a6904bfc964e"
