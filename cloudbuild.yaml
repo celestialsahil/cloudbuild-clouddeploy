@@ -3,7 +3,8 @@ steps:
   #   args: ['install']
   - name: "gcr.io/$PROJECT_ID/sonarsource/sonar-scanner-cli:latest" 
     args: [ 
-      "-Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy", 
+      "-Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy",
+      "-Dsonar.organisation=celestialsahil"
       "-Dsonar.sources=.", 
       "-Dsonar.host.url=https://sonarcloud.io", 
       "-Dsonar.login=${_SONAR_TOKEN}",
