@@ -13,15 +13,15 @@ steps:
   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA"]
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - >
-    gcloud deploy releases create release-$BUILD_ID
-    --delivery-pipeline=hello-test
-    --region=asia-east1
-    --source=./
-    --images=hello-app=asia-south1-docker.pkg.dev/$PROJECT_ID/a-repo/hello-app:$SHORT_SHA
-substitutions:
-  _SONAR_TOKEN: "sqp_770d5fc27d92434cc548fd5382d5868b7f51112a"
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   entrypoint: 'bash'
+#   args:
+#   - '-c'
+#   - >
+#     gcloud deploy releases create release-$BUILD_ID
+#     --delivery-pipeline=hello-test
+#     --region=asia-east1
+#     --source=./
+#     --images=hello-app=asia-south1-docker.pkg.dev/$PROJECT_ID/a-repo/hello-app:$SHORT_SHA
+# substitutions:
+  _SONAR_TOKEN: "sqp_4368ecfe9f52127ba625e08de3933d929b79429f"
