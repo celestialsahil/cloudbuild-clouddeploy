@@ -7,7 +7,7 @@ steps:
    "-Dsonar.sources=.", 
    "-Dsonar.host.url=https://9000-cs-1086408402877-default.cs-asia-southeast1-ajrg.cloudshell.dev", 
    "-Dsonar.login=${_SONAR_TOKEN}",
-    #"-Dsonar.java.binaries=.",
+   "-Dsonar.java.binaries=.",
    "-Dsonar.qualitygate.wait=true" ]
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
