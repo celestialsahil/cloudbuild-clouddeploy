@@ -1,18 +1,19 @@
 steps:
-# - name: 'gcr.io/cloud-builders/mvn'
-#  args: ['install']
-- name: "gcr.io/$PROJECT_ID/sonarsource/sonar-scanner-cli" 
+ - name: 'gcr.io/cloud-builders/mvn'
+  args: ['install']
+- name: "gcr.io/$PROJECT_ID/sonar-scanner:latest" 
   args: [ 
-   "-Dsonar.projectKey=project-test", 
-   "-Dsonar.sources=.", 
-   "-Dsonar.host.url=https://9000-cs-1086408402877-default.cs-asia-southeast1-ajrg.cloudshell.dev", 
+   "-Dsonar.organization=celestialsahil"
+   "-Dsonar.projectKey=celestialsahil_cloudbuild-clouddeploy"
+   "-Dsonar.sources=.""
+   "-Dsonar.host.url=https://sonarcloud.io" 
    "-Dsonar.login=${_SONAR_TOKEN}",
-   "-Dsonar.java.binaries=.",
+    #"-Dsonar.java.binaries=.",
    "-Dsonar.qualitygate.wait=true" ]
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA"]
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ["push", "asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA"]
 # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
 #   entrypoint: 'bash'
 #   args:
@@ -23,5 +24,5 @@ steps:
 #     --region=asia-east1
 #     --source=./
 #     --images=hello-app=asia-south1-docker.pkg.dev/$PROJECT_ID/a-repo/hello-app:$SHORT_SHA
-# substitutions:
-  _SONAR_TOKEN: "sqp_4368ecfe9f52127ba625e08de3933d929b79429f"
+substitutions:
+  _SONAR_TOKEN: "044993e76b3572f8b6941a6d9a23a6904bfc964e"
