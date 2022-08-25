@@ -8,7 +8,7 @@ steps:
     #"-Dsonar.java.binaries=.",
     "-Dsonar.qualitygate.wait=true" ]
 substitutions:
-  _SONAR_TOKEN: "sqp_770d5fc27d92434cc548fd5382d5868b7f51112a"
+  _SONAR_TOKEN: sqp_770d5fc27d92434cc548fd5382d5868b7f51112a
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-south1-docker.pkg.dev/niveus-delivery-infra-mod-poc/a-repo/hello-app:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
